@@ -1,0 +1,18 @@
+<div class="wid100">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+  
+      <div *ngFor="let question of questions" class="form-row">
+        <app-question [question]="question" [form]="form"></app-question>
+        <br>
+      </div>
+  
+      <div class="form-row">
+        <button type="submit" [disabled]="!form.valid">Submit</button>
+      </div>
+    </form>
+  
+    <div *ngIf="payLoad" class="form-row"> <br> 
+      <strong>Submitted the following values</strong><br> <br> 
+      <div [innerHTML]="payLoad"></div>
+    </div>
+</div>

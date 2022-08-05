@@ -1,0 +1,19 @@
+<div [formGroup]="form">
+    <label [attr.for]="question.linkId">{{question.text}}</label>
+  
+    <div [ngSwitch]="question.controlType">
+        <input *ngSwitchCase="'textbox'" [formControlName]="question.linkId"
+                [id]="question.linkId" [type]="question.type">
+                
+        <div *ngSwitchCase="'radio'" [id]="question.linkId" >
+            <input [name]="question.linkId" [value]="true" [formControlName]="question.linkId" type="radio">True
+            <input [name]="question.linkId" [value]="false" [formControlName]="question.linkId" type="radio">False
+        </div>
+        <select [id]="question.linkId" *ngSwitchCase="'dropdown'" [formControlName]="question.linkId">
+            <option *ngFor="let opt of question.option" [value]="opt.valueCoding.code">{{opt.valueCoding.display}}</option>
+        </select>
+  
+    </div>
+  
+    <div class="errorMessage" *ngIf="!isValid"><small>*This field is required</small></div>
+</div>
